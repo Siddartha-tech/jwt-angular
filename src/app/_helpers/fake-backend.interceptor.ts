@@ -4,7 +4,8 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpResponse
+  HttpResponse,
+  HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, materialize, dematerialize } from 'rxjs/operators';
@@ -55,7 +56,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     function error(message: any) {
-      return throwError({ error: { message } })
+      //return throw new Error("");
+       return throwError({ error: { message } })
         .pipe(materialize(), delay(500), dematerialize()); // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648);
     }
 
@@ -66,3 +68,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
   }
 }
+
+export const fakeBackendProvider = {
+  // use fake backend in place of Http service for backend-less development
+  provide: HTTP_INTERCEPTORS,
+  useClass: FakeBackendInterceptor,
+  multi: true
+};

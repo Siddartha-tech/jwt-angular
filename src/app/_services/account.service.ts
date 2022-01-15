@@ -12,17 +12,19 @@ import { map } from 'rxjs/operators';
 export class AccountService {
 
   private userSubject!: BehaviorSubject<User>;
-  public user!: Observable<User>;
+  public user: Observable<User>;
 
   constructor(private router: Router,
     private http: HttpClient) {
     const userInfo = localStorage.getItem('user');
-    this.userSubject = userInfo ? new BehaviorSubject<User>(JSON.parse(userInfo)) : new BehaviorSubject<User>(new User());
-    this.user = this.userSubject.asObservable();
+    if (userInfo) {
+      this.userSubject = new BehaviorSubject<User>(JSON.parse(userInfo));
+    }
+    this.user = this.userSubject?.asObservable();
   }
 
   public get userValue(): User {
-    return this.userSubject.value;
+    return this.userSubject?.value;
   }
 
   login(username: string, password: string): Observable<User> {
