@@ -1,1 +1,48 @@
-<p>register works!</p>
+<div class="card">
+    <h4 class="card-header">Register</h4>
+    <div class="card-body">
+        <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)">
+        <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()"> -->
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" [(ngModel)]="model.firstName" name="firstName"
+                #firstName="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': !(firstName.valid || firstName.pristine) }" />
+                <div *ngIf="!(firstName.valid || firstName.pristine)" class="invalid-feedback">
+                    <div *ngIf="!(firstName.valid || firstName.pristine)">First Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="firstName" [(ngModel)]="model.lastName" name="lastName"
+                #lastName="ngModel" class="form-control" required [ngClass]="{ 'is-invalid': !(lastName.valid || lastName.pristine) }" />
+                <div *ngIf="!(lastName.valid || lastName.pristine)" class="invalid-feedback">
+                    <div *ngIf="!(lastName.valid || lastName.pristine)">Last Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" [(ngModel)]="model.username" name="username"
+                #username="ngModel" class="form-control" required class="form-control" [ngClass]="{ 'is-invalid': !(username.valid || username.pristine) }" />
+                <div *ngIf="!(username.valid || username.pristine)" class="invalid-feedback">
+                    <div *ngIf="!(username.valid || username.pristine)">Username is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" [(ngModel)]="model.password" name="password"
+                #password="ngModel" class="form-control" required max="6" class="form-control" [ngClass]="{ 'is-invalid': !(password.valid || password.pristine) }" />
+                <div *ngIf="!(password.valid || password.pristine)" class="invalid-feedback">
+                    <div *ngIf="!(password.valid || password.pristine)">Password is required</div>
+                    <div *ngIf="!(password.valid || password.pristine)">Password must be at least 6 characters</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="!registerForm.valid" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Register
+                </button>
+                <a routerLink="../login" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

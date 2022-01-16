@@ -51,6 +51,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     // helper functions
 
     function ok(body?: any) {
+      debugger;
       return of(new HttpResponse({ status: 200, body }))
         .pipe(delay(500)); // delay observable to simulate server api call
     }
