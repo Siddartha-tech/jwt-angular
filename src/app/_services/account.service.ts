@@ -33,7 +33,7 @@ export class AccountService {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         const userInfo = JSON.stringify(user)
         localStorage.setItem('user', userInfo);
-        this.userSubject ? this.userSubject.next(user) : this.userSubject = new BehaviorSubject<User>(JSON.parse(userInfo));
+        this.userSubject ? this.userSubject.next(user) : this.userSubject = new BehaviorSubject<User>(user);
         return user;
       }));
   }
