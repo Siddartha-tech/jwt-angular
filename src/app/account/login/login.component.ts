@@ -62,6 +62,9 @@ export class LoginComponent implements OnInit {
         error: error => {
           this.alertService.error(error);
           this.loading = false;
+        },
+        complete: () => {
+          console.log('completed.');
         }
       });
   }

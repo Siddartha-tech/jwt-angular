@@ -7,8 +7,9 @@ import { AccountService } from './_services/account.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-  title = 'jwt-angular';
+  title:string = 'jwt-angular';
 
   user!: User;
 

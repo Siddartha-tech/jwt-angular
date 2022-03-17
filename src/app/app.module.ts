@@ -8,12 +8,15 @@ import { AppComponent } from './app.component';
 import { AlertComponent } from './_compenents/alert/alert.component';
 import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helpers';
 import { HomeComponent } from './home/home.component';
+import { NewObservableComponent } from './demo/new-observable/new-observable.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlertComponent,
-    HomeComponent
+    HomeComponent,
+    NewObservableComponent// ,
+    // AdDirective
   ],
   imports: [
     BrowserModule,
